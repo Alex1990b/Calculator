@@ -15,6 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CalculationViewController") as! CalculationViewController
+        let presenter = CalculatorPresenter()
+        let mathService = MathService()
+        viewController.presenter = presenter
+        presenter.delegate = viewController
+        presenter.mathService = mathService
+        
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
     }
