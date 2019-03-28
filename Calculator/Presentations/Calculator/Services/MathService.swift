@@ -49,8 +49,14 @@ final class MathService: MathematicalService {
         let expression = NSExpression(format: operationExpression)
         
         guard let mathValue = expression.expressionValue(with: nil, context: nil) as? Double,
-            let value = numberFormatter.string(from: NSNumber(value: mathValue))
+            var value = numberFormatter.string(from: NSNumber(value: mathValue))
             else { throw CalculationError.unknownError }
+        
+        //needed because number formatter eat 0 at the beginning
+        if value.starts(with: ".") {
+            let index = value.startIndex
+            value.insert("0", at: index)
+        }
         
         return value
     }

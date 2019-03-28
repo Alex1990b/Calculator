@@ -13,7 +13,7 @@ final class CalculatorPresenter: CalculatorPresenterProtocol {
     private var operationType: MathService.OperatorType?
     private var firstValue: Double? = 0.0
     private var secondValue: Double?
-    private var result: String = "0"
+    private var result: String = ""
     
     var mathService: MathService?
     weak var delegate: CalculatorView?
